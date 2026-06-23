@@ -1,7 +1,7 @@
 'use client';
 
 import { useLang } from './LangProvider';
-import { getEvent, MAPS_URL, mapEmbedUrl, TICKETS_URL } from '@/lib/config';
+import { getEvent, MAPS_URL, mapEmbedUrl } from '@/lib/config';
 import { formatEventDateTime } from '@/lib/i18n';
 
 /* ── Language toggle (shared brutalist style with the homepage) ───── */
@@ -162,20 +162,18 @@ export default function EventDetail({ slug }: { slug: string }) {
                   {t.event.lineupNote}
                 </p>
               </div>
-              {/* Tickets → Webook Jeddah events (real link, new tab). */}
+              {/* Tickets — coming soon. Non-clickable placeholder (no URL on sale yet). */}
               <div className="p-4 sm:p-6">
                 <h2 className="font-grotesk text-xs font-bold uppercase tracking-[0.25em] text-concretedark">
                   {t.event.ticketsTitle}
                 </h2>
-                <a
-                  href={TICKETS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-2 inline-flex min-h-[44px] items-center border border-ink bg-acid px-4 py-3 font-grotesk text-xs font-bold uppercase tracking-widest text-ink hover:bg-ink hover:text-paper"
-                  title={t.event.ticketsBuy}
+                <span
+                  aria-disabled="true"
+                  className="mt-2 inline-flex min-h-[44px] cursor-not-allowed items-center border border-ink bg-paper px-4 py-3 font-grotesk text-xs font-bold uppercase tracking-widest text-concrete opacity-60"
+                  title={t.event.ticketsComingSoon}
                 >
-                  {t.event.ticketsBuy}
-                </a>
+                  {t.event.ticketsComingSoon}
+                </span>
               </div>
             </div>
 

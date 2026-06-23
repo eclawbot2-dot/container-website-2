@@ -2,8 +2,8 @@
 //
 // LINK POLICY (no BS links):
 // Every outward link is either VERIFIED-REAL or a clearly-labelled, non-clickable
-// PLACEHOLDER. We do NOT guess social handles or mailboxes. (Tickets now point at
-// the real Webook Jeddah listing; IG + contact email remain placeholders below.)
+// PLACEHOLDER. We do NOT guess social handles or mailboxes. (Tickets, IG and
+// contact email all remain non-clickable placeholders below.)
 
 // Instagram: NO verified handle is known for this venue.
 // TODO real IG unknown — do NOT publish a guessed instagram.com link.
@@ -11,8 +11,8 @@ export const INSTAGRAM_HANDLE: string | null = null;
 // When a real handle is confirmed, set INSTAGRAM_URL to `https://instagram.com/<handle>`.
 export const INSTAGRAM_URL: string | null = null;
 
-// Webook Jeddah events — swap to specific event slug when on sale
-export const TICKETS_URL = 'https://webook.com/explore?city=JED&country=SA';
+// TODO: no ticket URL yet — placeholder until on sale
+export const TICKETS_URL: string | null = null;
 
 // Contact email: no live mailbox is provisioned yet.
 // TODO real mailbox unknown — UI renders a non-link "Contact — coming soon" label (see i18n placeholders).
