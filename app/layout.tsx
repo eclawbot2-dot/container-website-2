@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Space_Grotesk, Cairo } from 'next/font/google';
 import './globals.css';
-import { VENUE_COORDS, EVENTS, INSTAGRAM_URL } from '@/lib/config';
+import { VENUE_COORDS, EVENTS } from '@/lib/config';
 
 const grotesk = Space_Grotesk({
   subsets: ['latin'],
@@ -86,7 +86,7 @@ const venueLd = {
   url: SITE_URL,
   description: DESCRIPTION,
   image: OG_IMAGE,
-  sameAs: [INSTAGRAM_URL],
+  // No verified social profiles yet — omit sameAs rather than link a guessed handle.
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Shams Container Terminal, Al Moulysaa district, Jeddah port area',
@@ -108,14 +108,9 @@ const eventsLd = EVENTS.filter((e) => !e.tba).map((e) => ({
   startDate: e.dateISO,
   eventStatus: 'https://schema.org/EventScheduled',
   eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-  url: SITE_URL,
+  url: `${SITE_URL}/events/${e.id}/`,
   image: OG_IMAGE,
-  offers: {
-    '@type': 'Offer',
-    url: INSTAGRAM_URL,
-    availability: 'https://schema.org/InStock',
-    validFrom: e.dateISO,
-  },
+  // Ticketing not yet open — no offers/URL until a real ticket link exists.
   performer: { '@type': 'PerformingGroup', name: e.artist },
   location: {
     '@type': 'MusicVenue',

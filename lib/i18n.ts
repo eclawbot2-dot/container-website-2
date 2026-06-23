@@ -22,8 +22,28 @@ export type Dict = {
     title: string;
     subtitle: string;
     ticketsCta: string;
+    detailsCta: string;
     tba: string;
     note: string;
+  };
+  event: {
+    backToLineup: string;
+    aboutArtist: string;
+    venueLabel: string;
+    locationLabel: string;
+    dateLabel: string;
+    genreLabel: string;
+    lineupNote: string;
+    ticketsTitle: string;
+    ticketsComingSoon: string;
+    mapCta: string;
+    venueName: string;
+    venueAddress: string;
+  };
+  placeholders: {
+    instagram: string;
+    tickets: string;
+    contact: string;
   };
   visit: {
     eyebrow: string;
@@ -80,8 +100,29 @@ export const dict: Record<Lang, Dict> = {
       title: 'Events & Lineup',
       subtitle: 'World-class techno and house, on the edge of the Red Sea.',
       ticketsCta: 'Tickets & info',
+      detailsCta: 'Details',
       tba: 'More to be announced',
-      note: 'Lineup and dates are subject to change. Follow our Instagram for the latest announcements and ticketing.',
+      note: 'Lineup and dates are subject to change. Ticketing and final details are announced per event.',
+    },
+    event: {
+      backToLineup: 'Back to lineup',
+      aboutArtist: 'About the artist',
+      venueLabel: 'Venue',
+      locationLabel: 'Location',
+      dateLabel: 'Date & time',
+      genreLabel: 'Sound',
+      lineupNote: 'Lineup subject to change.',
+      ticketsTitle: 'Tickets',
+      ticketsComingSoon: 'Tickets — coming soon',
+      mapCta: 'Open in Maps',
+      venueName: 'The Container',
+      venueAddress:
+        'Shams Container Terminal, Al Moulysaa district, Jeddah port area, Red Sea coast, Saudi Arabia.',
+    },
+    placeholders: {
+      instagram: 'Instagram — coming soon',
+      tickets: 'Tickets — coming soon',
+      contact: 'Contact — coming soon',
     },
     visit: {
       eyebrow: 'Plan your night',
@@ -143,8 +184,29 @@ export const dict: Record<Lang, Dict> = {
       title: 'الفعاليات والعروض',
       subtitle: 'تكنو وهاوس على أعلى مستوى، على حافة البحر الأحمر.',
       ticketsCta: 'التذاكر والمعلومات',
+      detailsCta: 'التفاصيل',
       tba: 'سيُعلن عن المزيد',
-      note: 'العروض والتواريخ قابلة للتغيير. تابع حسابنا على إنستغرام لآخر الإعلانات والتذاكر.',
+      note: 'العروض والتواريخ قابلة للتغيير. يُعلَن عن التذاكر والتفاصيل النهائية مع كل فعالية.',
+    },
+    event: {
+      backToLineup: 'العودة إلى الفعاليات',
+      aboutArtist: 'عن الفنان',
+      venueLabel: 'المكان',
+      locationLabel: 'الموقع',
+      dateLabel: 'التاريخ والوقت',
+      genreLabel: 'الأسلوب',
+      lineupNote: 'العروض قابلة للتغيير.',
+      ticketsTitle: 'التذاكر',
+      ticketsComingSoon: 'التذاكر — قريبًا',
+      mapCta: 'افتح في الخرائط',
+      venueName: 'ذا كونتينر',
+      venueAddress:
+        'محطة شمس للحاويات، حي المُليساء، منطقة ميناء جدة، ساحل البحر الأحمر، المملكة العربية السعودية.',
+    },
+    placeholders: {
+      instagram: 'إنستغرام — قريبًا',
+      tickets: 'التذاكر — قريبًا',
+      contact: 'التواصل — قريبًا',
     },
     visit: {
       eyebrow: 'خطّط لليلتك',
@@ -189,4 +251,10 @@ export function formatEventDate(iso: string, lang: Lang): string {
   return lang === 'ar'
     ? `${wd} · ${day} ${month} ${year}`
     : `${wd} · ${day} ${month} ${year}`;
+}
+
+// Date + optional time, e.g. "Friday · 21 August 2026 · 23:00" (Western digits, both langs).
+export function formatEventDateTime(iso: string, lang: Lang, time?: string): string {
+  const base = formatEventDate(iso, lang);
+  return time ? `${base} · ${time}` : base;
 }

@@ -2,9 +2,6 @@
 
 import { useLang } from './LangProvider';
 import {
-  INSTAGRAM_URL,
-  INSTAGRAM_HANDLE,
-  CONTACT_EMAIL,
   MAPS_URL,
   mapEmbedUrl,
   EVENTS,
@@ -87,14 +84,13 @@ export default function Site() {
             <a href="#visit" className="inline-flex min-h-[44px] items-center font-grotesk text-xs font-bold uppercase tracking-widest hover:bg-ink hover:text-paper">{t.nav.visit}</a>
           </nav>
           <div className="flex items-center gap-2 sm:gap-3">
-            <a
-              href={INSTAGRAM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden min-h-[44px] items-center border border-ink px-3 py-2 font-grotesk text-xs font-bold uppercase tracking-widest hover:bg-acid sm:inline-flex"
+            {/* Tickets: no verified ticketing URL — visible non-link placeholder, not a guessed ticketer. */}
+            <span
+              className="hidden min-h-[44px] items-center border border-dashed border-concretedark px-3 py-2 font-grotesk text-xs font-bold uppercase tracking-widest text-concretedark sm:inline-flex"
+              title={t.placeholders.tickets}
             >
-              {t.nav.tickets}
-            </a>
+              {t.placeholders.tickets}
+            </span>
             <LangToggle />
           </div>
         </div>
@@ -155,15 +151,14 @@ export default function Site() {
                 {t.hero.cta}
                 <span aria-hidden>{isAr ? '←' : '→'}</span>
               </a>
-              <a
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-between border-s border-t border-ink p-4 font-grotesk text-sm font-bold uppercase tracking-widest hover:bg-ink hover:text-paper sm:p-6 md:border-t-0"
+              {/* Instagram: no verified handle — non-link placeholder, not a guessed instagram.com URL. */}
+              <span
+                className="flex items-center justify-between border-s border-t border-dashed border-concretedark p-4 font-grotesk text-sm font-bold uppercase tracking-widest text-concretedark sm:p-6 md:border-t-0"
+                title={t.placeholders.instagram}
               >
-                {t.hero.instagram}
-                <span aria-hidden>↗</span>
-              </a>
+                {t.placeholders.instagram}
+                <span aria-hidden>·</span>
+              </span>
             </div>
           </div>
         </div>
@@ -253,14 +248,13 @@ export default function Site() {
                       {t.lineup.tba}
                     </span>
                   ) : (
+                    // Internal pre-rendered event detail page (NOT an Instagram push).
                     <a
-                      href={INSTAGRAM_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={`/events/${ev.id}/`}
                       className="inline-flex min-h-[44px] items-center gap-2 border border-acid bg-acid px-4 py-3 font-grotesk text-xs font-bold uppercase tracking-widest text-ink hover:bg-paper hover:text-ink"
                     >
-                      {t.lineup.ticketsCta}
-                      <span aria-hidden>↗</span>
+                      {t.lineup.detailsCta}
+                      <span aria-hidden>{isAr ? '←' : '→'}</span>
                     </a>
                   )}
                 </div>
@@ -335,20 +329,17 @@ export default function Site() {
           <div className="mt-8 grid grid-cols-1 gap-6 border-t border-concretedark pt-8 sm:grid-cols-3">
             <div>
               <h4 className="font-grotesk text-xs font-bold uppercase tracking-[0.25em] text-concrete">{t.footer.follow}</h4>
-              <a
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 inline-block font-grotesk text-lg font-bold hover:text-acid"
-              >
-                @{INSTAGRAM_HANDLE} ↗
-              </a>
+              {/* Instagram: no verified handle — non-link placeholder, not a guessed account. */}
+              <span className="mt-2 inline-block font-grotesk text-lg font-bold text-concrete">
+                {t.placeholders.instagram}
+              </span>
             </div>
             <div>
               <h4 className="font-grotesk text-xs font-bold uppercase tracking-[0.25em] text-concrete">{t.footer.contact}</h4>
-              <a href={`mailto:${CONTACT_EMAIL}`} className="mt-2 inline-block font-grotesk text-lg font-bold hover:text-acid">
-                {CONTACT_EMAIL}
-              </a>
+              {/* Email: no live mailbox provisioned — non-link label, not a dead mailto. */}
+              <span className="mt-2 inline-block font-grotesk text-lg font-bold text-concrete">
+                {t.placeholders.contact}
+              </span>
             </div>
             <div>
               <h4 className="font-grotesk text-xs font-bold uppercase tracking-[0.25em] text-concrete">{t.footer.eventsNote}</h4>
