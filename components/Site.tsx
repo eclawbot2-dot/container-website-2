@@ -5,6 +5,7 @@ import {
   MAPS_URL,
   mapEmbedUrl,
   EVENTS,
+  TICKETS_URL,
 } from '@/lib/config';
 import { formatEventDate } from '@/lib/i18n';
 
@@ -84,13 +85,16 @@ export default function Site() {
             <a href="#visit" className="inline-flex min-h-[44px] items-center font-grotesk text-xs font-bold uppercase tracking-widest hover:bg-ink hover:text-paper">{t.nav.visit}</a>
           </nav>
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Tickets: no verified ticketing URL — visible non-link placeholder, not a guessed ticketer. */}
-            <span
-              className="hidden min-h-[44px] items-center border border-dashed border-concretedark px-3 py-2 font-grotesk text-xs font-bold uppercase tracking-widest text-concretedark sm:inline-flex"
-              title={t.placeholders.tickets}
+            {/* Tickets → Webook Jeddah events (real link, new tab). */}
+            <a
+              href={TICKETS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden min-h-[44px] items-center border border-ink bg-acid px-3 py-2 font-grotesk text-xs font-bold uppercase tracking-widest text-ink hover:bg-ink hover:text-paper sm:inline-flex"
+              title={t.event.ticketsBuy}
             >
-              {t.placeholders.tickets}
-            </span>
+              {t.event.ticketsBuy}
+            </a>
             <LangToggle />
           </div>
         </div>

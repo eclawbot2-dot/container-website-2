@@ -36,6 +36,7 @@ export type Dict = {
     lineupNote: string;
     ticketsTitle: string;
     ticketsComingSoon: string;
+    ticketsBuy: string;
     mapCta: string;
     venueName: string;
     venueAddress: string;
@@ -114,6 +115,7 @@ export const dict: Record<Lang, Dict> = {
       lineupNote: 'Lineup subject to change.',
       ticketsTitle: 'Tickets',
       ticketsComingSoon: 'Tickets — coming soon',
+      ticketsBuy: 'Buy tickets',
       mapCta: 'Open in Maps',
       venueName: 'The Container',
       venueAddress:
@@ -198,6 +200,7 @@ export const dict: Record<Lang, Dict> = {
       lineupNote: 'العروض قابلة للتغيير.',
       ticketsTitle: 'التذاكر',
       ticketsComingSoon: 'التذاكر — قريبًا',
+      ticketsBuy: 'اشترِ التذاكر',
       mapCta: 'افتح في الخرائط',
       venueName: 'ذا كونتينر',
       venueAddress:
