@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --grid: #1a1a1a;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f4f4f1;
+  color: #0a0a0a;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #e6ff00;
+  color: #0a0a0a;
+}
+
+/* Brutalist hairline grid background for the page frame */
+.grid-frame {
+  border-top: 1px solid var(--grid);
+  border-bottom: 1px solid var(--grid);
+}
+
+/* Massive responsive grotesk display type */
+.display {
+  font-weight: 900;
+  line-height: 0.84;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+
+[dir='rtl'] .display {
+  letter-spacing: 0;
+}
+
+/* Marquee strip */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-rtl {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50%); }
+}
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 28s linear infinite;
+}
+[dir='rtl'] .marquee-track {
+  animation-name: marquee-rtl;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  html { scroll-behavior: auto; }
+}
+
+/* High-contrast b/w photo treatment */
+.bw {
+  filter: grayscale(100%) contrast(1.15) brightness(0.95);
+}
+
+/* Hard focus ring for accessibility against brutalist surfaces */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #e6ff00;
+  outline-offset: 2px;
+}
