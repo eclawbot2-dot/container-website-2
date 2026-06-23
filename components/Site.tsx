@@ -6,7 +6,7 @@ import {
   INSTAGRAM_HANDLE,
   CONTACT_EMAIL,
   MAPS_URL,
-  OSM_EMBED_URL,
+  mapEmbedUrl,
   EVENTS,
 } from '@/lib/config';
 import { formatEventDate } from '@/lib/i18n';
@@ -21,12 +21,12 @@ function LangToggle() {
       className="group inline-flex items-stretch border border-ink font-grotesk text-xs font-bold uppercase tracking-widest"
     >
       <span
-        className={`px-3 py-2 ${lang === 'en' ? 'bg-ink text-paper' : 'bg-paper text-ink'}`}
+        className={`flex min-w-[44px] items-center justify-center px-3 py-2 ${lang === 'en' ? 'bg-ink text-paper' : 'bg-paper text-ink'}`}
       >
         EN
       </span>
       <span
-        className={`px-3 py-2 border-s border-ink ${lang === 'ar' ? 'bg-ink text-paper' : 'bg-paper text-ink'}`}
+        className={`flex min-w-[44px] items-center justify-center border-s border-ink px-3 py-2 ${lang === 'ar' ? 'bg-ink text-paper' : 'bg-paper text-ink'}`}
         style={{ fontFamily: 'var(--font-arabic), Tahoma, sans-serif' }}
       >
         ع
@@ -76,32 +76,41 @@ export default function Site() {
     <div className="min-h-screen bg-paper text-ink">
       {/* ── HEADER / NAV ─────────────────────────────────────────── */}
       <header className="sticky top-0 z-50 border-b border-ink bg-paper/95 backdrop-blur">
-        <div className="mx-auto flex max-w-[1400px] items-center justify-between px-4 py-3 sm:px-6">
-          <a href="#top" className="font-grotesk text-lg font-bold tracking-brutal">
+        <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-3 px-4 py-3 sm:px-6">
+          <a href="#top" className="inline-flex min-h-[44px] items-center font-grotesk text-base font-bold tracking-brutal sm:text-lg">
             {isAr ? 'ذا كونتينر' : 'THE CONTAINER'}
-            <span className="ms-2 align-super text-acid">■</span>
+            <span className="ms-2 align-super text-acid" aria-hidden>■</span>
           </a>
-          <nav className="hidden items-center gap-6 md:flex">
-            <a href="#about" className="font-grotesk text-xs font-bold uppercase tracking-widest hover:bg-ink hover:text-paper">{t.nav.about}</a>
-            <a href="#lineup" className="font-grotesk text-xs font-bold uppercase tracking-widest hover:bg-ink hover:text-paper">{t.nav.lineup}</a>
-            <a href="#visit" className="font-grotesk text-xs font-bold uppercase tracking-widest hover:bg-ink hover:text-paper">{t.nav.visit}</a>
+          <nav aria-label={isAr ? 'التنقل الرئيسي' : 'Primary'} className="hidden items-center gap-6 md:flex">
+            <a href="#about" className="inline-flex min-h-[44px] items-center font-grotesk text-xs font-bold uppercase tracking-widest hover:bg-ink hover:text-paper">{t.nav.about}</a>
+            <a href="#lineup" className="inline-flex min-h-[44px] items-center font-grotesk text-xs font-bold uppercase tracking-widest hover:bg-ink hover:text-paper">{t.nav.lineup}</a>
+            <a href="#visit" className="inline-flex min-h-[44px] items-center font-grotesk text-xs font-bold uppercase tracking-widest hover:bg-ink hover:text-paper">{t.nav.visit}</a>
           </nav>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <a
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden border border-ink px-3 py-2 font-grotesk text-xs font-bold uppercase tracking-widest hover:bg-acid sm:inline-block"
+              className="hidden min-h-[44px] items-center border border-ink px-3 py-2 font-grotesk text-xs font-bold uppercase tracking-widest hover:bg-acid sm:inline-flex"
             >
               {t.nav.tickets}
             </a>
             <LangToggle />
           </div>
         </div>
+        {/* Mobile section nav — header nav is hidden on small screens */}
+        <nav
+          aria-label={isAr ? 'التنقل في الصفحة' : 'Page sections'}
+          className="flex items-stretch border-t border-ink md:hidden"
+        >
+          <a href="#about" className="flex min-h-[44px] flex-1 items-center justify-center border-e border-ink font-grotesk text-[0.7rem] font-bold uppercase tracking-widest hover:bg-ink hover:text-paper">{t.nav.about}</a>
+          <a href="#lineup" className="flex min-h-[44px] flex-1 items-center justify-center border-e border-ink font-grotesk text-[0.7rem] font-bold uppercase tracking-widest hover:bg-ink hover:text-paper">{t.nav.lineup}</a>
+          <a href="#visit" className="flex min-h-[44px] flex-1 items-center justify-center font-grotesk text-[0.7rem] font-bold uppercase tracking-widest hover:bg-ink hover:text-paper">{t.nav.visit}</a>
+        </nav>
       </header>
 
       {/* ── HERO ─────────────────────────────────────────────────── */}
-      <section id="top" className="border-b border-ink">
+      <section id="top" className="overflow-hidden border-b border-ink">
         <div className="mx-auto max-w-[1400px] px-4 sm:px-6">
           {/* kicker row */}
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-ink py-2">
@@ -116,9 +125,9 @@ export default function Site() {
           {/* massive type */}
           <div className="relative py-6 sm:py-10">
             <h1
-              className={`display text-ink ${isAr ? 'font-arabic' : 'font-grotesk'}`}
+              className={`display break-words text-ink ${isAr ? 'font-arabic' : 'font-grotesk'}`}
               style={{
-                fontSize: 'clamp(3.4rem, 17vw, 16rem)',
+                fontSize: 'clamp(2.75rem, 15vw, 16rem)',
               }}
             >
               {isAr ? (
@@ -248,7 +257,7 @@ export default function Site() {
                       href={INSTAGRAM_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 border border-acid bg-acid px-4 py-2 font-grotesk text-xs font-bold uppercase tracking-widest text-ink hover:bg-paper hover:text-ink"
+                      className="inline-flex min-h-[44px] items-center gap-2 border border-acid bg-acid px-4 py-3 font-grotesk text-xs font-bold uppercase tracking-widest text-ink hover:bg-paper hover:text-ink"
                     >
                       {t.lineup.ticketsCta}
                       <span aria-hidden>↗</span>
@@ -298,13 +307,16 @@ export default function Site() {
               </div>
             </div>
             {/* map column */}
-            <div className="relative min-h-[320px] bg-concrete">
+            <div className="relative min-h-[320px] border-t border-ink bg-concrete lg:border-s-0 lg:border-t-0">
               <iframe
-                title={isAr ? 'خريطة الموقع' : 'Venue location map'}
-                src={OSM_EMBED_URL}
+                key={lang}
+                title={isAr ? 'خريطة موقع ذا كونتينر في ميناء جدة' : 'Map showing The Container at Jeddah port'}
+                src={mapEmbedUrl(lang)}
                 className="absolute inset-0 h-full w-full grayscale"
                 loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
                 style={{ border: 0 }}
+                allowFullScreen
               />
             </div>
           </div>
@@ -312,11 +324,11 @@ export default function Site() {
       </section>
 
       {/* ── FOOTER ───────────────────────────────────────────────── */}
-      <footer className="bg-ink text-paper">
+      <footer className="overflow-hidden bg-ink text-paper">
         <div className="mx-auto max-w-[1400px] px-4 py-12 sm:px-6">
           <p
-            className={`display text-paper ${isAr ? 'font-arabic' : 'font-grotesk'}`}
-            style={{ fontSize: 'clamp(2.2rem, 9vw, 7rem)' }}
+            className={`display break-words text-paper ${isAr ? 'font-arabic' : 'font-grotesk'}`}
+            style={{ fontSize: 'clamp(2rem, 8.5vw, 7rem)' }}
           >
             {isAr ? 'ذا كونتينر' : 'THE CONTAINER'}
           </p>
