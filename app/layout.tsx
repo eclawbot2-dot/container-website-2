@@ -58,9 +58,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: OG_IMAGE,
-        width: 800,
-        height: 600,
-        alt: 'Shipping containers at the Jeddah Red Sea port — The Container venue',
+        width: 1200,
+        height: 1800,
+        alt: 'Crowd at a live electronic-music event inside The Container — a raw industrial venue in Jeddah',
       },
     ],
   },

@@ -189,11 +189,11 @@ export default function Site() {
               <figure className="border border-ink">
                 <img
                   src="/images/port.jpg"
-                  alt={isAr ? 'حاويات شحن في ميناء جدة' : 'Shipping containers at the Jeddah port'}
+                  alt={isAr ? 'حشد في حفل موسيقي حي داخل مساحة صناعية خرسانية في جدة' : 'Crowd at a live music event inside a raw concrete industrial space in Jeddah'}
                   className="bw aspect-[4/3] w-full object-cover"
                   loading="lazy"
-                  width={800}
-                  height={600}
+                  width={1200}
+                  height={1800}
                 />
                 <figcaption className="border-t border-ink px-3 py-2 font-grotesk text-[0.65rem] font-bold uppercase tracking-widest text-concretedark">
                   {isAr ? 'محطة شمس للحاويات · جدة' : 'Shams Container Terminal · Jeddah'}

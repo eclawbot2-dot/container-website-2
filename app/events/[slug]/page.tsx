@@ -30,7 +30,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
       description,
       locale: 'en_US',
       alternateLocale: 'ar_SA',
-      images: [{ url: OG_IMAGE, width: 800, height: 600, alt: `${ev.artist} at The Container` }],
+      images: [{ url: OG_IMAGE, width: 1200, height: 1800, alt: `${ev.artist} at The Container` }],
     },
     twitter: { card: 'summary_large_image', title, description, images: [OG_IMAGE] },
   };
