@@ -50,7 +50,8 @@ function SectionLabel({ num, children }: { num: string; children: React.ReactNod
 function Marquee({ text }: { text: string }) {
   const seg = ` ${text}  /  `;
   return (
-    <div className="overflow-hidden border-y border-ink bg-acid">
+    // aria-hidden: purely decorative strip; without it screen readers announce the text 12 times.
+    <div aria-hidden="true" className="overflow-hidden border-y border-ink bg-acid">
       <div className="marquee-track py-1.5">
         {Array.from({ length: 12 }).map((_, i) => (
           <span
@@ -87,7 +88,7 @@ export default function Site() {
             {/* Tickets — coming soon. Non-clickable placeholder (no URL on sale yet). */}
             <span
               aria-disabled="true"
-              className="hidden min-h-[44px] cursor-not-allowed items-center border border-ink bg-paper px-3 py-2 font-grotesk text-xs font-bold uppercase tracking-widest text-concrete opacity-60 sm:inline-flex"
+              className="hidden min-h-[44px] cursor-not-allowed items-center border border-concrete bg-paper px-3 py-2 font-grotesk text-xs font-bold uppercase tracking-widest text-concretedark sm:inline-flex"
               title={t.event.ticketsComingSoon}
             >
               {t.event.ticketsComingSoon}
@@ -114,7 +115,8 @@ export default function Site() {
             <span className="font-grotesk text-xs font-bold uppercase tracking-[0.25em]">
               {t.hero.kicker}
             </span>
-            <span className="font-grotesk text-xs font-bold uppercase tracking-[0.25em] text-concretedark">
+            {/* dir="ltr": coordinates are an LTR run; without it RTL bidi reorders them. */}
+            <span dir="ltr" className="font-grotesk text-xs font-bold uppercase tracking-[0.25em] text-concretedark">
               21.2727° N · 39.1935° E
             </span>
           </div>

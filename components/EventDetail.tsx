@@ -169,7 +169,7 @@ export default function EventDetail({ slug }: { slug: string }) {
                 </h2>
                 <span
                   aria-disabled="true"
-                  className="mt-2 inline-flex min-h-[44px] cursor-not-allowed items-center border border-ink bg-paper px-4 py-3 font-grotesk text-xs font-bold uppercase tracking-widest text-concrete opacity-60"
+                  className="mt-2 inline-flex min-h-[44px] cursor-not-allowed items-center border border-concrete bg-paper px-4 py-3 font-grotesk text-xs font-bold uppercase tracking-widest text-concretedark"
                   title={t.event.ticketsComingSoon}
                 >
                   {t.event.ticketsComingSoon}
